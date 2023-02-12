@@ -1,34 +1,25 @@
-import { Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'ngx-markdown-ssr-sample';
-  markdown = `## Markdown __rulez__!
-  ---
+export class AppComponent{
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private http:HttpClient){
+  }
+  // fileName = './assets/markdown/test.md';
+  markdown = `## without markdown file`;
+  // md;
 
-  ### Syntax highlight
-  \`\`\`typescript
-  const language = 'typescript';
-  \`\`\`
-
-  ### Lists
-  1. Ordered list
-  2. Another bullet point
-     - Unordered list
-     - Another unordered bullet point
-
-
-  ### Blockquote
-  > Blockquote to the max :heart:
-
-  ### KaTeX
-
-  \$e=mc^2\$
-
-  \$\\pm\\sqrt{a^2 + b^2}\$
-  `;
+  // async ngOnInit() {
+  //     this.md = await this.http.get(`/assets/markdown/test.md`, { responseType: 'text'}).toPromise();
+  //     console.log(this.md)
+  //     const response = await fetch('/assets/markdown/test.md');
+  //     this.md = await response.text();
+  //     console.log(this.md)
+  // }
 }
